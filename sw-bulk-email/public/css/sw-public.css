@@ -1,0 +1,257 @@
+/* SW Bulk Email – public opt-in form styles */
+
+.sw-optin-wrap {
+	max-width: 480px;
+	margin: 1.5em 0;
+}
+
+.sw-optin-form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	align-items: flex-end;
+}
+
+.sw-optin-label {
+	display: block;
+	width: 100%;
+	font-weight: 600;
+	margin-bottom: 0.25em;
+}
+
+.sw-optin-input {
+	flex: 1 1 200px;
+	padding: 0.55em 0.75em;
+	font-size: 1em;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.sw-optin-btn {
+	padding: 0.55em 1.25em;
+	font-size: 1em;
+	cursor: pointer;
+	background: #0073aa;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	transition: background 0.2s;
+}
+
+.sw-optin-btn:hover {
+	background: #005177;
+}
+
+.sw-optin-notice {
+	padding: 0.75em 1em;
+	border-left: 4px solid transparent;
+	margin-bottom: 1em;
+	font-size: 0.95em;
+}
+
+.sw-optin-notice--success {
+	background: #edfaef;
+	border-color: #46b450;
+	color: #245b26;
+}
+
+.sw-optin-notice--info {
+	background: #e8f4fb;
+	border-color: #0073aa;
+	color: #004a6e;
+}
+
+.sw-optin-notice--error {
+	background: #fbeaea;
+	border-color: #dc3232;
+	color: #7a1414;
+}
+
+/* =========================================================
+   SW Email Archive – [sw_email_archive] shortcode styles
+   ========================================================= */
+
+.sw-archive-wrap {
+	max-width: 720px;
+	margin: 1.5em 0;
+}
+
+.sw-archive-empty {
+	color: #666;
+	font-style: italic;
+}
+
+/* List */
+.sw-archive-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.sw-archive-item {
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	padding: 1em 1.25em;
+	margin-bottom: 0.75em;
+	background: #fff;
+	box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+
+.sw-archive-item-header {
+	display: flex;
+	align-items: center;
+	gap: 0.6em;
+	margin-bottom: 0.5em;
+}
+
+.sw-archive-badge {
+	display: inline-block;
+	padding: 0.2em 0.6em;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 0.78em;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+.sw-archive-date {
+	color: #888;
+	font-size: 0.875em;
+}
+
+.sw-archive-item-title {
+	font-size: 1.05em;
+	font-weight: 600;
+	color: #222;
+	margin-bottom: 0.6em;
+	line-height: 1.4;
+}
+
+.sw-archive-item-actions {
+	margin-top: 0.4em;
+}
+
+.sw-archive-view-btn {
+	display: inline-block;
+	padding: 0.4em 1em;
+	font-size: 0.9em;
+	cursor: pointer;
+	background: #0073aa;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	transition: background 0.2s;
+}
+
+.sw-archive-view-btn:hover {
+	background: #005177;
+}
+
+/* Pagination */
+.sw-archive-pagination {
+	margin-top: 1.25em;
+	text-align: center;
+}
+
+.sw-archive-pagination .page-numbers {
+	display: inline-block;
+	padding: 0.3em 0.7em;
+	margin: 0 0.15em;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	text-decoration: none;
+	color: #0073aa;
+	font-size: 0.9em;
+}
+
+.sw-archive-pagination .page-numbers.current {
+	background: #0073aa;
+	color: #fff;
+	border-color: #0073aa;
+}
+
+.sw-archive-pagination .page-numbers:hover:not(.current) {
+	background: #f0f8ff;
+}
+
+/* Modal */
+.sw-archive-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 99999;
+}
+
+.sw-archive-modal-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.sw-archive-modal-inner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 90%;
+	max-width: 760px;
+	max-height: 85vh;
+	background: #fff;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 8px 32px rgba(0,0,0,.25);
+	overflow: hidden;
+}
+
+.sw-archive-modal-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.9em 1.25em;
+	border-bottom: 1px solid #e0e0e0;
+	background: #f8f9fa;
+	flex-shrink: 0;
+}
+
+.sw-archive-modal-header h3 {
+	margin: 0;
+	font-size: 1em;
+	font-weight: 700;
+	color: #222;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: calc(100% - 3em);
+}
+
+.sw-archive-modal-header button {
+	background: none;
+	border: none;
+	font-size: 1.3em;
+	cursor: pointer;
+	color: #666;
+	line-height: 1;
+	padding: 0.1em 0.3em;
+	border-radius: 3px;
+	transition: background 0.15s;
+	flex-shrink: 0;
+}
+
+.sw-archive-modal-header button:hover {
+	background: #e8e8e8;
+	color: #222;
+}
+
+.sw-archive-modal-body {
+	flex: 1;
+	overflow: hidden;
+}
+
+.sw-archive-iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+	min-height: 60vh;
+	border: none;
+}
