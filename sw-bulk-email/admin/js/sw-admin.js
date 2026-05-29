@@ -51,33 +51,6 @@ jQuery(document).ready(function ($) {
 	}
 
 	// -----------------------------------------------------------------------
-	// Subscribers – delete
-	// -----------------------------------------------------------------------
-
-	$(document).on('click', '.sw-subscriber-delete-btn', function() {
-		if ( ! confirm( swBulkEmail.i18n.confirmDeleteSubscriber ) ) { return; }
-		var id  = $(this).data('id');
-		var $tr = $(this).closest('tr');
-		$.post(swBulkEmail.ajaxUrl, {
-			action: 'sw_delete_subscriber',
-			nonce:  swBulkEmail.nonce,
-			id:     id
-		}, function(resp) {
-			if (resp.success) {
-				$tr.fadeOut(300, function(){ $(this).remove(); });
-				$('#sw-subscriber-notice').html(
-					'<div class="notice notice-success is-dismissible"><p>' +
-					swBulkEmail.i18n.subscriberDeleted + '</p></div>'
-				);
-			} else {
-				alert( resp.data && resp.data.message ? resp.data.message : swBulkEmail.i18n.error );
-			}
-		}).fail(function() {
-			alert( swBulkEmail.i18n.error );
-		});
-	});
-
-	// -----------------------------------------------------------------------
 	// Templates
 	// -----------------------------------------------------------------------
 

@@ -636,6 +636,32 @@ class SW_Admin {
 			}
 			?>
 		</div>
+		<script>
+		jQuery(document).ready(function($){
+			var ajaxUrl = <?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>;
+			var nonce   = <?php echo wp_json_encode( wp_create_nonce( 'sw_send_batch' ) ); ?>;
+
+			$(document).on('click', '.sw-subscriber-delete-btn', function(){
+				if ( ! confirm('<?php echo esc_js( __( '이 구독자를 삭제하시겠습니까?', 'sw-bulk-email' ) ); ?>') ) { return; }
+				var id  = $(this).data('id');
+				var $tr = $(this).closest('tr');
+				$.post(ajaxUrl, { action: 'sw_delete_subscriber', nonce: nonce, id: id }, function(resp){
+					if (resp.success) {
+						$tr.fadeOut(300, function(){ $(this).remove(); });
+						$('#sw-subscriber-notice').html(
+							'<div class="notice notice-success is-dismissible"><p>' +
+							'<?php echo esc_js( __( '구독자가 삭제되었습니다.', 'sw-bulk-email' ) ); ?>' +
+							'</p></div>'
+						);
+					} else {
+						alert( resp.data && resp.data.message ? resp.data.message : '삭제 실패' );
+					}
+				}).fail(function(){
+					alert('오류가 발생했습니다.');
+				});
+			});
+		});
+		</script>
 		<?php
 	}
 
@@ -1595,10 +1621,11 @@ adHtml + '\n' +
 
 			<div class="sw-manual-card">
 				<h2><?php esc_html_e( '숏코드(Shortcode) 안내', 'sw-bulk-email' ); ?></h2>
-				<p><?php esc_html_e( '글, 페이지, 위젯 등에 아래의 숏코드를 삽입하여 구독 폼을 표시할 수 있습니다.', 'sw-bulk-email' ); ?></p>
-				
+				<p><?php esc_html_e( '글, 페이지, 위젯 등에 아래의 숏코드를 삽입하여 구독 폼 또는 발송 메일 목록을 표시할 수 있습니다.', 'sw-bulk-email' ); ?></p>
+
+				<!-- ① 구독 폼 -->
 				<h3><code>[sw_optin_form]</code></h3>
-				<p><?php esc_html_e( '기본적인 구독 폼을 삽입합니다.', 'sw-bulk-email' ); ?></p>
+				<p><?php esc_html_e( '뉴스레터 구독 폼을 삽입합니다.', 'sw-bulk-email' ); ?></p>
 
 				<h4><?php esc_html_e( '속성 (Attributes)', 'sw-bulk-email' ); ?></h4>
 				<ul>
@@ -1612,6 +1639,54 @@ adHtml + '\n' +
 				<h4><?php esc_html_e( '사용 예시', 'sw-bulk-email' ); ?></h4>
 				<pre><code>[sw_optin_form]</code></pre>
 				<pre><code>[sw_optin_form button="<?php esc_attr_e( '뉴스레터 구독하기', 'sw-bulk-email' ); ?>"]</code></pre>
+
+				<hr style="margin:24px 0;">
+
+				<!-- ② 발송 아카이브 -->
+				<h3><code>[sw_email_archive]</code></h3>
+				<p><?php esc_html_e( '관리자가 공개(is_public=1)로 설정한 발송 메일 목록을 표시합니다. 방문자가 제목을 클릭하면 본문을 모달로 확인할 수 있습니다.', 'sw-bulk-email' ); ?></p>
+
+				<h4><?php esc_html_e( '속성 (Attributes)', 'sw-bulk-email' ); ?></h4>
+				<table class="wp-list-table widefat striped">
+					<thead>
+						<tr>
+							<th style="width:20%;"><?php esc_html_e( '속성', 'sw-bulk-email' ); ?></th>
+							<th style="width:20%;"><?php esc_html_e( '기본값', 'sw-bulk-email' ); ?></th>
+							<th><?php esc_html_e( '설명', 'sw-bulk-email' ); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>per_page</code></td>
+							<td><code>10</code></td>
+							<td><?php esc_html_e( '페이지당 표시할 메일 수를 지정합니다.', 'sw-bulk-email' ); ?></td>
+						</tr>
+						<tr>
+							<td><code>type</code></td>
+							<td><?php esc_html_e( '(전체)', 'sw-bulk-email' ); ?></td>
+							<td>
+								<?php esc_html_e( '특정 발송 유형만 필터링합니다.', 'sw-bulk-email' ); ?><br>
+								<code>subscriber</code> — <?php esc_html_e( '구독자 메일만 표시', 'sw-bulk-email' ); ?><br>
+								<code>ad</code> — <?php esc_html_e( '광고 메일만 표시', 'sw-bulk-email' ); ?><br>
+								<code>system</code> — <?php esc_html_e( '전체 발송 메일만 표시', 'sw-bulk-email' ); ?>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h4><?php esc_html_e( '사용 예시', 'sw-bulk-email' ); ?></h4>
+				<pre><code>[sw_email_archive]</code></pre>
+				<pre><code>[sw_email_archive per_page="5"]</code></pre>
+				<pre><code>[sw_email_archive type="subscriber" per_page="10"]</code></pre>
+
+				<h4><?php esc_html_e( '공개 설정 방법', 'sw-bulk-email' ); ?></h4>
+				<p>
+					<?php
+					printf(
+						wp_kses_post( __( '<strong>SW Bulk Email → 발송 내역</strong> 페이지에서 각 메일의 <strong>공개여부</strong> 버튼을 클릭하면 공개/비공개를 전환할 수 있습니다. 공개로 설정된 메일만 숏코드에 노출됩니다.', 'sw-bulk-email' ) )
+					);
+					?>
+				</p>
 			</div>
 
 			<div class="sw-manual-card">

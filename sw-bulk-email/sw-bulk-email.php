@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name:       SW Bulk Email & Opt-in
- * Plugin URI:        https://suwannews.com
+ * Plugin URI:        https://github.com/tongjookim/sw-bulk-email-for-WP.git
  * Description:       A bulk email and double opt-in management plugin that integrates perfectly with WP Mail SMTP.
  * Version:           1.0.0
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * Author:            The Suwan News Company
- * Author URI:        https://suwannews.com
+ * Author URI:        https://www.swn.kr
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       sw-bulk-email
