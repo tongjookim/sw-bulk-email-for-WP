@@ -22,6 +22,7 @@
 * **PHP:** 8.0 이상 권장
 * **WordPress:** 7.0 이상 권장
 * **필수 플러그인:** [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/) (대량 메일 발송 시 서버 부하 방지 및 스팸 처리 방지를 위해 필수적으로 연동해야 합니다.)
+* **호환 플러그인:** 코스모스팜 회원관리
 * **테스트 완료 SMTP 서버:** **Brevo** (구 Sendinblue) 환경에서 안정성 테스트를 완료했습니다.
 
 ## 🚀 설치 방법
