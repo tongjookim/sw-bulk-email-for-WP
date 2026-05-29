@@ -1,7 +1,7 @@
 # SW Bulk Email & Opt-in 📧
 
 ![Version](https://img.shields.io/badge/version-1.0.3-blue.svg)
-![WordPress](https://img.shields.io/badge/WordPress-6.0+-207196?logo=wordpress)
+![WordPress](https://img.shields.io/badge/WordPress-7.0+-207196?logo=wordpress)
 ![License](https://img.shields.io/badge/license-GPLv2-green.svg)
 ![Made with Claude](https://img.shields.io/badge/Made_with-Claude_AI-8a2be2.svg)
 
