@@ -2,4 +2,4 @@
 *.md
 
 # 2. 하지만 claude.md 파일만은 예외(!)로 업로드에 포함시킵니다.
-!claude.md
+!CLAUDE.md
